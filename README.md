@@ -27,13 +27,15 @@ irm https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/install
 ### MacOS 安装
 
 ```bash
-curl -s https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/install.sh | bash
 ```
 
 ### 使用说明
 
 1. 安装完成后需要重新打开终端
-2. Windows 下使用 `jkm.ps1`，MacOS 下使用 `jkm.sh`
+2. 支持以下两种命令形式：
+   - 简短命令：`jkm`
+   - 完整命令：`jkm.ps1`（Windows）或 `jkm.sh`（MacOS）
 3. 首次使用可能需要设置执行权限：
    - Windows: 以管理员身份运行 PowerShell，执行 `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
    - MacOS: 执行 `chmod +x ~/jupyter-kernel-manager/bin/jkm.sh`

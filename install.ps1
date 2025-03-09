@@ -14,6 +14,10 @@ New-Item -ItemType Directory -Path $scriptDir -Force | Out-Null
 Write-Host "Downloading script..." -ForegroundColor Cyan
 Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/bin/jkm.ps1' -OutFile $scriptPath
 
+# Create copy without extension
+Copy-Item -Path $scriptPath -Destination "$scriptDir\jkm" -Force
+Write-Host "Created command alias 'jkm'" -ForegroundColor Green
+
 # Add to environment variables
 $userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
 if ($userPath -notlike "*$scriptDir*") {
@@ -31,7 +35,7 @@ if ($userPath -notlike "*$scriptDir*") {
 # Installation complete
 Write-Host "`nInstallation completed!" -ForegroundColor Green
 Write-Host "Script installed to: $scriptPath" -ForegroundColor Cyan
-Write-Host "Please restart your terminal and use 'jkm.ps1' command" -ForegroundColor Yellow
+Write-Host "You can use either 'jkm' or 'jkm.ps1' command" -ForegroundColor Yellow
 
 # Wait for user confirmation
 Read-Host "`nPress Enter to exit"
