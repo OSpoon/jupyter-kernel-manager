@@ -3,7 +3,8 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 
 # Create installation directory
 $installDir = "$env:USERPROFILE\jupyter-kernel-manager"
-$scriptPath = "$installDir\jkm.ps1"
+$scriptDir = "$installDir\bin"
+$scriptPath = "$scriptDir\jkm.ps1"
 
 # Create directory if not exists
 if (-not (Test-Path $installDir)) {
@@ -13,7 +14,7 @@ if (-not (Test-Path $installDir)) {
 
 # Download script
 Write-Host "Downloading script..." -ForegroundColor Cyan
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/jkm.ps1' -OutFile $scriptPath
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/bin/jkm.ps1' -OutFile $scriptPath
 
 # Add to environment variables
 $userPath = [Environment]::GetEnvironmentVariable('Path', 'User')

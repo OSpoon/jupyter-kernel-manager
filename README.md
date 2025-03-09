@@ -7,21 +7,42 @@
 - 快速创建新的 conda 环境并添加到 Jupyter
 - 自定义 Jupyter kernel 的显示名称
 - 安全地移除用户创建的 kernels（保护系统默认 kernels）
+- 跨平台支持（Windows/MacOS）
 
 ## 系统要求
 
-- Windows 操作系统
-- PowerShell
+- Windows/MacOS 操作系统
+- PowerShell (Windows) / Terminal (MacOS)
 - Anaconda
 - Jupyter Lab
 
 ## 快速开始
 
-### 一键安装
+### Windows 安装
 
 ```powershell
 irm https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/install.ps1 | iex
 ```
+
+### MacOS 安装
+
+```bash
+curl -s https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/install.sh | bash
+```
+
+### 使用说明
+
+1. 安装完成后需要重新打开终端
+2. Windows 下使用 `jkm.ps1`，MacOS 下使用 `jkm.sh`
+3. 首次使用可能需要设置执行权限：
+   - Windows: 以管理员身份运行 PowerShell，执行 `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
+   - MacOS: 执行 `chmod +x ~/jupyter-kernel-manager/bin/jkm.sh`
+
+### 常见问题
+
+1. 环境变量未生效：重新打开终端
+2. 权限问题：确保有管理员权限
+3. conda 未找到：确保已将 conda 添加到环境变量
 
 ## 许可证
 
