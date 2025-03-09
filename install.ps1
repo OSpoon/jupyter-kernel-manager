@@ -16,11 +16,11 @@ Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/OSpoon/jupyter-kernel-
 
 # Add to environment variables
 $userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
-if ($userPath -notlike "*$installDir*") {
+if ($userPath -notlike "*$scriptDir*") {
     Write-Host "Adding to environment variables..." -ForegroundColor Cyan
     try {
-        [Environment]::SetEnvironmentVariable('Path', "$userPath;$installDir", 'User')
-        $env:Path = "$env:Path;$installDir"
+        [Environment]::SetEnvironmentVariable('Path', "$userPath;$scriptDir", 'User')
+        $env:Path = "$env:Path;$scriptDir"
         Write-Host "Successfully added to PATH" -ForegroundColor Green
     } catch {
         Write-Host "Failed to add to PATH. Please run as administrator." -ForegroundColor Red
