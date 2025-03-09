@@ -1,8 +1,15 @@
 # Set execution policy
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 
-# Define installation path
-$scriptPath = "$env:USERPROFILE\jkm.ps1"
+# Create installation directory
+$installDir = "$env:USERPROFILE\jupyter-kernel-manager"
+$scriptPath = "$installDir\jkm.ps1"
+
+# Create directory if not exists
+if (-not (Test-Path $installDir)) {
+    Write-Host "Creating installation directory..." -ForegroundColor Cyan
+    New-Item -ItemType Directory -Path $installDir -Force | Out-Null
+}
 
 # Download script
 Write-Host "Downloading script..." -ForegroundColor Cyan
@@ -10,13 +17,21 @@ Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/OSpoon/jupyter-kernel-
 
 # Add to environment variables
 $userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
-if ($userPath -notlike "*$env:USERPROFILE*") {
+if ($userPath -notlike "*$installDir*") {
     Write-Host "Adding to environment variables..." -ForegroundColor Cyan
-    [Environment]::SetEnvironmentVariable('Path', "$userPath;$env:USERPROFILE", 'User')
+    try {
+        [Environment]::SetEnvironmentVariable('Path', "$userPath;$installDir", 'User')
+        $env:Path = "$env:Path;$installDir"
+        Write-Host "Successfully added to PATH" -ForegroundColor Green
+    } catch {
+        Write-Host "Failed to add to PATH. Please run as administrator." -ForegroundColor Red
+        exit 1
+    }
 }
 
 # Installation complete
 Write-Host "`nInstallation completed!" -ForegroundColor Green
+Write-Host "Script installed to: $scriptPath" -ForegroundColor Cyan
 Write-Host "Please restart your terminal and use 'jkm.ps1' command" -ForegroundColor Yellow
 
 # Wait for user confirmation
