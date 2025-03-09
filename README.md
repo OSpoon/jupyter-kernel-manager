@@ -17,27 +17,10 @@
 
 ## 快速开始
 
-### 一键安装（推荐）
+### 一键安装
 
 ```powershell
-irm https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/jkm.ps1 | iex
-```
-
-### 手动安装
-
-1. 克隆仓库：
-```bash
-git clone https://github.com/OSpoon/jupyter-kernel-manager.git
-```
-
-2. 进入项目目录：
-```bash
-cd jupyter-kernel-manager
-```
-
-3. 运行脚本：
-```bash
-.\jkm.ps1
+irm https://raw.githubusercontent.com/OSpoon/jupyter-kernel-manager/main/install.ps1 | iex
 ```
 
 ## 许可证
