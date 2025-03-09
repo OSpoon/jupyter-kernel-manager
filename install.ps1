@@ -7,10 +7,8 @@ $scriptDir = "$installDir\bin"
 $scriptPath = "$scriptDir\jkm.ps1"
 
 # Create directory if not exists
-if (-not (Test-Path $installDir)) {
-    Write-Host "Creating installation directory..." -ForegroundColor Cyan
-    New-Item -ItemType Directory -Path $installDir -Force | Out-Null
-}
+Write-Host "Creating installation directory..." -ForegroundColor Cyan
+New-Item -ItemType Directory -Path $scriptDir -Force | Out-Null
 
 # Download script
 Write-Host "Downloading script..." -ForegroundColor Cyan
